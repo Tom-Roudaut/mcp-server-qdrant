@@ -2,20 +2,17 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install uv for package management
+COPY . .
+
 RUN pip install --no-cache-dir uv
+RUN uv pip install --system --no-cache-dir -e ".[fastembed]"
+RUN uv pip install --system --no-cache-dir openai
 
-# Install the mcp-server-qdrant package
-RUN uv pip install --system --no-cache-dir qdrant-mcp
-
-# Expose the default port for SSE transport
 EXPOSE 8000
 
-# Set environment variables with defaults that can be overridden at runtime
 ENV QDRANT_URL=""
 ENV QDRANT_API_KEY=""
-ENV COLLECTION_NAME="default-collection"
-ENV EMBEDDING_MODEL="sentence-transformers/all-MiniLM-L6-v2"
+ENV COLLECTION_NAME="startups_global"
+ENV OPENAI_API_KEY=""
 
-# Run the server with SSE transport
-CMD python -c "import uvicorn; from qdrant_mcp.server import mcp; app = mcp.streamable_http_app(); uvicorn.run(app, host='0.0.0.0', port=8000, forwarded_allow_ips='*')"
+CMD uvx mcp-server-qdrant --transport streamable-http
