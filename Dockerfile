@@ -18,4 +18,4 @@ ENV COLLECTION_NAME="default-collection"
 ENV EMBEDDING_MODEL="sentence-transformers/all-MiniLM-L6-v2"
 
 # Run the server with SSE transport
-CMD python -c "import uvicorn; from qdrant_mcp.server import mcp; app = mcp.streamable_http_app(); uvicorn.run(app, host='0.0.0.0', port=8000)"
+CMD python -c "import uvicorn; from qdrant_mcp.server import mcp; app = mcp.streamable_http_app(); uvicorn.run(app, host='0.0.0.0', port=8000, forwarded_allow_ips='*')"
