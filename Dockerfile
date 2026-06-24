@@ -14,4 +14,4 @@ ENV QDRANT_API_KEY=""
 ENV COLLECTION_NAME="startups_global"
 ENV OPENAI_API_KEY=""
 
-CMD python -m mcp_server_qdrant --transport streamable-http
+CMD mcp-server-qdrant --transport streamable-http
