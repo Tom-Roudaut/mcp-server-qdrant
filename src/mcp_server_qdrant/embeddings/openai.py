@@ -27,7 +27,7 @@ class OpenAIProvider(EmbeddingProvider):
         return response.data[0].embedding
 
     def get_vector_name(self) -> str:
-        return self.model_name
+        return ""
 
     def get_vector_size(self) -> int:
         return VECTOR_SIZES.get(self.model_name, 1536)
