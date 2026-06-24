@@ -18,4 +18,4 @@ ENV COLLECTION_NAME="default-collection"
 ENV EMBEDDING_MODEL="sentence-transformers/all-MiniLM-L6-v2"
 
 # Run the server with SSE transport
-CMD python -c "from qdrant_mcp.server import mcp; mcp.run(transport='streamable-http', host='0.0.0.0', port=8000)"
+CMD python -c "from qdrant_mcp.server import mcp; mcp.run(transport='streamable-http')"
