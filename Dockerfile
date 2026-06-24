@@ -5,8 +5,7 @@ WORKDIR /app
 COPY . .
 
 RUN pip install --no-cache-dir uv
-RUN uv pip install --system --no-cache-dir -e ".[fastembed]"
-RUN uv pip install --system --no-cache-dir openai
+RUN uv pip install --system --no-cache-dir -e .
 
 EXPOSE 8000
 
